@@ -1,0 +1,9 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.5.4'
+    id 'java-library'
+
+}
+
+group 'com.github.lmm1990'
+version '1.0'

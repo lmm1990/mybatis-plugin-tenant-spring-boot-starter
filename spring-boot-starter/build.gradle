@@ -1,0 +1,69 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.github.lmm1990'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+apply from: './config.gradle'
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure
+    implementation group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '2.5.4'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor
+    annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.5.4'
+    // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+    implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    enabled = true
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+//设置动态属性
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+task sourcesJar(type: Jar) {
+    archiveClassifier.convention('sources')
+    archiveClassifier.set('sources')
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+            from components.java
+
+            artifact sourcesJar
+        }
+    }
+    repositories {
+        maven {
+            url = publishURL
+
+            credentials {
+                username publishUserName
+                password publishUserPassword
+            }
+        }
+    }
+}

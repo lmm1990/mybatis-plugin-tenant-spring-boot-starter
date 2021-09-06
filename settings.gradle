@@ -1,0 +1,4 @@
+rootProject.name = 'mybatis.plugin.tenant'
+include 'spring-boot-starter'
+include 'mybatis.plugin.tenant.demo'
+
