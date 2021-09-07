@@ -1,4 +1,4 @@
-package com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.annotation;
+package io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.annotation;
 
 import java.lang.annotation.*;
 

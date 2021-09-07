@@ -1,8 +1,8 @@
-package com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter;
+package io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter;
 
-import com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.config.TenantConfig;
-import com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.entity.BoundSqlSource;
-import com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.handler.TenantDataHandler;
+import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.config.TenantConfig;
+import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.entity.BoundSqlSource;
+import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.handler.TenantDataHandler;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.plugin.Interceptor;

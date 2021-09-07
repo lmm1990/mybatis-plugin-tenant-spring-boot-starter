@@ -1,4 +1,4 @@
-package com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.config;
+package io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

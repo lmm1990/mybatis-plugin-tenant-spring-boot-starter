@@ -1,6 +1,6 @@
 package mybatisPluginTenantSpringBootStarterDemo.mapper;
 
-import com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.annotation.IgnoreTenantField;
+import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.annotation.IgnoreTenantField;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

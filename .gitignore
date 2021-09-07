@@ -27,3 +27,7 @@ hs_err_pid*
 /spring-boot-starter/build
 /.gradle
 /spring-boot-starter/.gradle
+/spring-boot-starter/gradle.properties
+/spring-boot-starter/config/
+/spring-boot-starter/config
+/spring-boot-starter/gradle.properties
