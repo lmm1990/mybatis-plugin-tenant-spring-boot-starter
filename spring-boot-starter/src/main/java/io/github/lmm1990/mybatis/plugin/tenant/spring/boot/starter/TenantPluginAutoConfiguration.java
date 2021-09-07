@@ -1,6 +1,6 @@
-package com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter;
+package io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter;
 
-import com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.config.TenantConfig;
+import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.config.TenantConfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

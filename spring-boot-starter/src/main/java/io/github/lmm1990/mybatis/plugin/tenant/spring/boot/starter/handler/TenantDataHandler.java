@@ -1,4 +1,4 @@
-package com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.handler;
+package io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.handler;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,7 +1,7 @@
-package com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter;
+package io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter;
 
-import com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.annotation.IgnoreTenantField;
-import com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.handler.TenantDataHandler;
+import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.annotation.IgnoreTenantField;
+import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.handler.TenantDataHandler;
 import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.beans.BeansException;

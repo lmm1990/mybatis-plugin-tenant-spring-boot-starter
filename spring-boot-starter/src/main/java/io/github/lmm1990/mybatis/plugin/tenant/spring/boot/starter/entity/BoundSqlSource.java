@@ -1,4 +1,4 @@
-package com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.entity;
+package io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.entity;
 
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.SqlSource;

@@ -1,6 +1,6 @@
 package mybatisPluginTenantSpringBootStarterDemo;
 
-import com.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.handler.TenantDataHandler;
+import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.handler.TenantDataHandler;
 import mybatisPluginTenantSpringBootStarterDemo.mapper.TestMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
