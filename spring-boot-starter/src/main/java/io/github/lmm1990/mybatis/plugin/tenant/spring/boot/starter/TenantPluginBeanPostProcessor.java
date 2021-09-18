@@ -2,13 +2,11 @@ package io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter;
 
 import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.annotation.IgnoreTenantField;
 import io.github.lmm1990.mybatis.plugin.tenant.spring.boot.starter.handler.TenantDataHandler;
-import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
-
-import java.lang.reflect.Method;
+import org.springframework.util.ReflectionUtils;
 
 /**
  * 后置处理器，解析mapper方法自定义注解
@@ -25,17 +23,12 @@ public class TenantPluginBeanPostProcessor implements BeanPostProcessor {
         }
         MapperFactoryBean mapperFactoryBean = (MapperFactoryBean) bean;
         final String mapperName = mapperFactoryBean.getObjectType().getName();
-        Method[] methods = mapperFactoryBean.getObjectType().getMethods();
-        for (Method item : methods) {
-            IgnoreTenantField annotation = item.getAnnotation(IgnoreTenantField.class);
+        ReflectionUtils.doWithMethods(mapperFactoryBean.getObjectType(), method -> {
+            IgnoreTenantField annotation = method.getAnnotation(IgnoreTenantField.class);
             if (annotation != null) {
-                TenantDataHandler.ignoreTenantfieldMethods.add(String.format("%s.%s", mapperName, item.getName()));
+                TenantDataHandler.ignoreTenantfieldMethods.add(String.format("%s.%s", mapperName, method.getName()));
             }
-        }
-
-        Configuration configuration = mapperFactoryBean.getSqlSession().getConfiguration();
-        configuration.getMapper(mapperFactoryBean.getObjectType(), mapperFactoryBean.getSqlSession());
-
+        });
         return bean;
     }
 
