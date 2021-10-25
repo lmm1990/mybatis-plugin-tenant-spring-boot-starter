@@ -23,9 +23,12 @@ public class TenantPluginBeanPostProcessor implements BeanPostProcessor {
         }
         MapperFactoryBean mapperFactoryBean = (MapperFactoryBean) bean;
         final String mapperName = mapperFactoryBean.getObjectType().getName();
+        if(mapperFactoryBean.getObjectType().isAnnotationPresent(IgnoreTenantField.class)){
+            TenantDataHandler.ignoreTenantfieldMethods.add(mapperName);
+            return bean;
+        }
         ReflectionUtils.doWithMethods(mapperFactoryBean.getObjectType(), method -> {
-            IgnoreTenantField annotation = method.getAnnotation(IgnoreTenantField.class);
-            if (annotation != null) {
+            if (method.isAnnotationPresent(IgnoreTenantField.class)) {
                 TenantDataHandler.ignoreTenantfieldMethods.add(String.format("%s.%s", mapperName, method.getName()));
             }
         });

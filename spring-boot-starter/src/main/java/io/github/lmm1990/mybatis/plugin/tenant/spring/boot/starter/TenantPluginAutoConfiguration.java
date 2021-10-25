@@ -18,7 +18,7 @@ public class TenantPluginAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(TenantPlugin.class)
-    public TenantPlugin transportClient() {
+    public TenantPlugin tenantPlugin() {
         return new TenantPlugin();
     }
 

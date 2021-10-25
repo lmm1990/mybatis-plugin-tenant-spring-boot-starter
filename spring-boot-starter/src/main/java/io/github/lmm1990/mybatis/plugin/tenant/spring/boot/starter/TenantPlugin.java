@@ -38,7 +38,8 @@ public class TenantPlugin implements Interceptor {
                 .getArgs()[0];
 
         //忽略租户字段
-        if (TenantDataHandler.ignoreTenantfieldMethods.contains(ms.getId())) {
+        String className = ms.getId().substring(0,ms.getId().lastIndexOf("."));
+        if (TenantDataHandler.ignoreTenantfieldMethods.contains(className) || TenantDataHandler.ignoreTenantfieldMethods.contains(ms.getId())) {
             return invocation.proceed();
         }
 
@@ -165,20 +166,26 @@ public class TenantPlugin implements Interceptor {
     /**
      * update语句新增租户信息
      *
-     * @param sql sql语句
+     * @param baseSql sql语句
      * @return 改写后的sql
      */
-    private String addWhereTenantInfo(String sql) {
+    private String addWhereTenantInfo(String baseSql) {
+        baseSql = baseSql.toLowerCase(Locale.ROOT);
+        int orderIndex = baseSql.indexOf(" order");
         StringBuilder finalSql = new StringBuilder();
-        finalSql.append(sql);
-        int whereIndex = sql.toLowerCase(Locale.ROOT).indexOf("where");
+        if (orderIndex > -1) {
+            finalSql.append(baseSql, 0, orderIndex);
+        }else {
+            finalSql.append(baseSql);
+        }
+        int whereIndex = baseSql.indexOf("where");
         if (whereIndex == -1) {
             finalSql.append(" where ");
         } else {
             finalSql.append(" and ");
         }
         for (String condition : tenantConfig.getFieldNamePreFixConditions()) {
-            if (sql.contains(condition)) {
+            if (baseSql.contains(condition)) {
                 finalSql.append(tenantConfig.getFieldNamePreFix());
                 finalSql.append(".");
                 break;
@@ -188,6 +195,9 @@ public class TenantPlugin implements Interceptor {
         finalSql.append("='");
         finalSql.append(TenantDataHandler.getTenantFieldValue());
         finalSql.append("'");
+        if (orderIndex > -1) {
+            finalSql.append(baseSql, orderIndex,baseSql.length());
+        }
         return finalSql.toString();
     }
 
