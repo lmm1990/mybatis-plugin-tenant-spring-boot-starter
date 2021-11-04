@@ -33,7 +33,7 @@ public class TenantConfig {
     /**
      * 租户字段名称前缀条件列表
      */
-    private String[] fieldNamePreFixConditions;
+    private String[] fieldNamePreFixConditions = new String[0];
 
     /**
      * 忽略表名列表
@@ -50,8 +50,8 @@ public class TenantConfig {
             this.fieldNamePreFix = tempFieldNames[0];
             this.fieldName = tempFieldNames[1];
             fieldNamePreFixConditions = new String[]{
-                    String.format(String.format(" %s ", this.fieldNamePreFix)),
-                    String.format(String.format(" %s\n", this.fieldNamePreFix))
+                    String.format(" %s ", this.fieldNamePreFix),
+                    String.format(" %s\n", this.fieldNamePreFix)
             };
             return;
         }
