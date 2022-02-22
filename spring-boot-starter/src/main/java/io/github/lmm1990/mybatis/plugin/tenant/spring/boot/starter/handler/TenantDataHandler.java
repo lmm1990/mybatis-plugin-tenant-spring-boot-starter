@@ -14,7 +14,7 @@ public class TenantDataHandler {
     /**
      * 租户值
      */
-    private static final ThreadLocal<Object> TENANT_FIELD_VALUE = new ThreadLocal<>();
+    private static final ThreadLocal<Long> TENANT_FIELD_VALUE = new ThreadLocal<>();
 
 
     /**
@@ -28,8 +28,12 @@ public class TenantDataHandler {
      * @return java.lang.Object
      * @since 刘明明/2021-09-02 16:41:29
      **/
-    public static Object getTenantFieldValue() {
-        return TENANT_FIELD_VALUE.get();
+    public static long getTenantFieldValue() {
+        Long value = TENANT_FIELD_VALUE.get();
+        if(value==null){
+            return 0L;
+        }
+        return value.longValue();
     }
 
     /**
@@ -38,7 +42,16 @@ public class TenantDataHandler {
      * @param tenantFieldValue: 租户值
      * @since 刘明明/2021-09-02 16:41:52
      **/
-    public static void setTenantFieldValue(Object tenantFieldValue) {
+    public static void setTenantFieldValue(Long tenantFieldValue) {
         TenantDataHandler.TENANT_FIELD_VALUE.set(tenantFieldValue);
+    }
+
+    /**
+     * 删除租户值
+     *
+     * @modify 刘明明/2021-11-24 14:26:24
+     **/
+    public static void removeTenantFieldValue() {
+        TenantDataHandler.TENANT_FIELD_VALUE.remove();
     }
 }

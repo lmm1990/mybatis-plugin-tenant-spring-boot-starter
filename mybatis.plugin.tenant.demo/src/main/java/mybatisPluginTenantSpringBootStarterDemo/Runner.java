@@ -21,7 +21,7 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        TenantDataHandler.setTenantFieldValue(777);
+        TenantDataHandler.setTenantFieldValue(777L);
         System.out.println(testMapper.add("张三"));
         System.out.println(testMapper.update("张三@", 11));
         System.out.println(testMapper.delete(11));

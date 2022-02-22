@@ -53,7 +53,7 @@ public class TenantPlugin implements Interceptor {
         BoundSql boundSql = ms.getBoundSql(parameterObject);
         String sql = boundSql.getSql();
         //已经存在租户字段，返回
-        if (sql.contains(tenantConfig.getFieldName())) {
+        if (hasTenantField(sql)) {
             return invocation.proceed();
         }
         for (String tableName : tenantConfig.getIgnoreTableNames()) {
@@ -68,6 +68,21 @@ public class TenantPlugin implements Interceptor {
         sql = addTenantInfo(ms.getSqlCommandType(), sql);
         resetSql2Invocation(invocation, sql);
         return invocation.proceed();
+    }
+
+    /**
+     * 是否包含租户字段
+     *
+     * @param sql:  sql语句
+     * @return boolean
+     * @modify 刘明明/2021-11-24 14:36:32
+     **/
+    private boolean hasTenantField(String sql){
+        final int index = sql.toLowerCase(Locale.ROOT).indexOf(" where");
+        if(index>-1){
+            sql = sql.substring(index);
+        }
+        return sql.contains(tenantConfig.getFieldName());
     }
 
     /**
